@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>openize</groupId>
+    <artifactId>openize-heic</artifactId>
+    <version>25.4</version>
+	<name>Openize.HEIC for Java</name>
+	<description>Openize.Heic is an open source implementation of the ISO/IEC 23008-12:2017 HEIF file format decoder. It is written from scratch and has a plain Java API to enable a simple integration into other software.</description>
+	<url>https://github.com/openize-heic/Openize.HEIC-for-Java</url>
+	
+    <organization>
+        <name>Openize Pty Ltd.</name>
+        <url>https://www.openize.com/</url>
+    </organization>
+	
+	<licenses>
+	  <license>
+		<name>Openize License</name>
+		<url>https://github.com/openize-heic/Openize.HEIC-for-Java/blob/main/LICENSE</url>
+		<distribution>repo</distribution>
+		<comments>A business-friendly OSS license</comments>
+	  </license>
+	  <license>
+		<name>MIT License</name>
+		<url>https://github.com/openize-heic/Openize.HEIC-for-Java/blob/main/licenses/Openize.IsoBmff/LICENSE</url>
+		<distribution>repo</distribution>
+		<comments>A business-friendly OSS license</comments>
+	  </license>
+    </licenses>
+	
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+	
+	<dependencies>
+		<dependency>
+		  <groupId>org.testng</groupId>
+		  <artifactId>testng</artifactId>
+		  <version>6.8.8</version>
+		  <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.agent</artifactId>
+			<version>0.8.12</version>
+			<classifier>runtime</classifier>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<execution>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<formats>
+							  <format>XML</format>
+							  <format>HTML</format>
+							</formats>
+						 </configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+				  <archive>
+					<addMavenDescriptor>false</addMavenDescriptor>
+					<index>true</index>
+					<manifest>
+					  <addDefaultEntries>true</addDefaultEntries>
+					  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+					  <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
+					</manifest>
+					<manifestEntries>
+						<Copyright>© 2024-2025 Openize Pty Ltd.</Copyright>
+					</manifestEntries>
+				  </archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	  
+		<resources>
+			<resource>
+				<directory>publish</directory>
+				<targetPath>META-INF</targetPath>
+				<filtering>false</filtering>
+				<includes>
+					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>
