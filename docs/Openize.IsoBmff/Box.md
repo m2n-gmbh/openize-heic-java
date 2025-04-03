@@ -32,12 +32,9 @@ Name | Type | Description | Notes
 ## Constructors
 
 Name | Description | Parameters
------------- | ------------- | ------------- | -------------
+------------ | ------------- | -------------
 **Box** | Create the box object from the bitstream. | BitStreamReader **stream** - File stream.
 **Box** | Create the box object from the box type and box size in bytes.<br />This constructor doesn't read data from the stream. | BoxType **boxtype** - Box type integer.<br />long **size** - Box size in bytes.
 **Box** | Create the box object from the bitstream and box type. | BitStreamReader **stream** - File stream.<br />BoxType **boxtype** - Box type integer.
 
 [[Back to API_README]](API_README.md)
-
-
-

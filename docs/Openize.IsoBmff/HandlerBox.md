@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Constructors
 
 Name | Description | Parameters
------------- | ------------- | ------------- | -------------
+------------ | ------------- | -------------
 **HandlerBox** | Create the box object from the bitstream. | BitStreamReader **stream** - File stream.
 
 [[Back to API_README]](API_README.md)

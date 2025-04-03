@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Constructors
 
 Name | Description | Parameters
------------- | ------------- | ------------- | -------------
+------------ | ------------- | -------------
 **HeicHeader** | Initializes a new instance of the heic image header. | MetaBox **meta** - Meta data box.
 
 [[Back to API_README]](API_README.md)

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Methods
 
 Name | Type | Description | Parameters
------------- | ------------- | ------------- | -------------
+------------ | ------------- | -------------
 **reset** | **void** | Resets buffer to empty state. | 
 
 [[Back to API_README]](API_README.md)

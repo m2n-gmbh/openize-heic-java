@@ -27,7 +27,7 @@ Name | Type | Description | Parameters
 ## Constructors
 
 Name | Description | Parameters
------------- | ------------- | ------------- | -------------
+------------ | ------------- | -------------
 **BitStreamWithNalSupport** | Creates a class object with a stream object and an optional buffer size as parameters. | Stream **stream** - The source stream.<br />int **bufferSize** = 4 - The buffer size. 
 
 [[Back to API_README]](API_README.md)
