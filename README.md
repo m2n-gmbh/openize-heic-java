@@ -110,8 +110,8 @@ try (IOFileStream fs = new IOFileStream("filename.heic", IOMode.READ))
 ## Documentation
 
 All public classes, methods and properties are documented in corresponding API_README:
-* [/Openize.Heic.Decoder/docs/API_README.md](https://github.com/openize-heic/Openize.HEIC-for-Java/blob/main/docs/Openize.Heic.Decoder/API_README.md) for Openize.Heic.Decoder;
-* [/Openize.IsoBmff/docs/API_README.md](https://github.com/openize-heic/Openize.HEIC-for-Java/blob/main/docs/Openize.IsoBmff/API_README.md) for Openize.IsoBmff.
+* [/Openize.Heic.Decoder/docs/API_README.md](https://github.com/openize-com/openize-heic-java/blob/main/docs/Openize.Heic.Decoder/API_README.md) for Openize.Heic.Decoder;
+* [/Openize.IsoBmff/docs/API_README.md](https://github.com/openize-com/openize-heic-java/blob/main/docs/Openize.IsoBmff/API_README.md) for Openize.IsoBmff.
 
 ### HeicImage
 
