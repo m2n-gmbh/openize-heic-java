@@ -29,6 +29,7 @@ public class HeicHeader
      * <p>
      * Meta data IsoBmff box.
      * </p>
+     * @return The meta data IsoBmff box.
      */
     public final MetaBox getMeta(){ return meta; }
     /**
@@ -42,6 +43,7 @@ public class HeicHeader
      * <p>
      * The identifier of the default frame.
      * </p>
+     * @return The identifier of the default frame.
      */
     public final /*UInt32*/long getDefaultFrameId() {
         return (meta.getpitm() != null ? meta.getpitm().item_ID : 0);

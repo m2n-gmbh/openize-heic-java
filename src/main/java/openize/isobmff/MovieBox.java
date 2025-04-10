@@ -48,7 +48,7 @@ public class MovieBox extends Box
 
         while (stream.getBitPosition() < startPos + size * 8)
         {
-            Box box = Box.parceBox(stream);
+            Box box = Box.parseBox(stream);
             boxes.add(box);
         }
 

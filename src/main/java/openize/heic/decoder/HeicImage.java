@@ -53,13 +53,15 @@ public class HeicImage
 
     /**
      * <p>
-     * Reads the file meta data and creates a class object for further decoding of the file contents.
-     * <p>This operation does not decode pixels.
-     * Use the default frame methods GetByteArray or GetInt32Array afterwards in order to decode pixels.</p>
+     * Reads the file metadata and creates a class object for further decoding of the file contents.
+     * </p>
+     * <p>
+     * This operation does not decode pixels.
+     * Use the default frame methods GetByteArray or GetInt32Array afterwards in order to decode pixels.
      * </p>
      *
      * @param stream File stream.
-     * @return Returns a heic image object with metadata read.
+     * @return Returns a HEIC image object with metadata read.
      */
     public static HeicImage load(IOStream stream)
     {
@@ -78,7 +80,7 @@ public class HeicImage
 
         while (bitstream.moreData())
         {
-            Box box = Box.parceBox(bitstream);
+            Box box = Box.parseBox(bitstream);
 
             if (box.type == BoxType.meta)
             {
@@ -101,7 +103,7 @@ public class HeicImage
     {
         BitStreamWithNalSupport bitstream = new BitStreamWithNalSupport(stream);
 
-        Box box = Box.parceBox(bitstream);
+        Box box = Box.parseBox(bitstream);
 
         if (!(box instanceof FileTypeBox))
         {
@@ -122,8 +124,8 @@ public class HeicImage
     /**
      * <p>
      * Get pixel data of the default image frame in the format of byte array.
-     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors and the presence of alpha byte.
      * @return Byte array, null if frame does not contain image data.
@@ -136,8 +138,8 @@ public class HeicImage
     /**
      * <p>
      * Get pixel data of the default image frame in the format of byte array.
-     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors and the presence of alpha byte.
      * @param boundsRectangle Bounds of the requested area.
@@ -151,8 +153,8 @@ public class HeicImage
     /**
      * <p>
      * Get pixel data of the default image frame in the format of integer array.
-     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors.
      * @return Integer array, null if frame does not contain image data.
@@ -165,8 +167,8 @@ public class HeicImage
     /**
      * <p>
      * Get pixel data of the default image frame in the format of integer array.
-     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors.
      * @param boundsRectangle Bounds of the requested area.
@@ -181,6 +183,7 @@ public class HeicImage
      * <p>
      * Heic image header. Grants convenient access to IsoBmff container meta data.
      * </p>
+     * @return The Heic image header.
      */
     public final HeicHeader getHeader()
     {
@@ -191,6 +194,7 @@ public class HeicImage
      * <p>
      * Dictionary of public Heic image frames with access by identifier.
      * </p>
+     * @return The dictionary of public Heic image frames with access by identifier.
      */
     public final Map<Long, HeicImageFrame> getFrames()
     {
@@ -202,6 +206,7 @@ public class HeicImage
      * <p>
      * Dictionary of all Heic image frames with access by identifier.
      * </p>
+     * @return The dictionary of all Heic image frames with access by identifier.
      */
     public final Map<Long, HeicImageFrame> getAllFrames()
     {
@@ -210,8 +215,9 @@ public class HeicImage
 
     /**
      * <p>
-     * Returns the default image frame, which is specified in meta data.
+     * Returns the default image frame, which is specified in metadata.
      * </p>
+     * @return the default image frame, which is specified in metadata.
      */
     public final HeicImageFrame getDefaultFrame()
     {
@@ -222,6 +228,7 @@ public class HeicImage
      * <p>
      * Width of the default image frame in pixels.
      * </p>
+     * @return The width of the default image frame in pixels.
      */
     public final /*UInt32*/long getWidth()
     {
@@ -232,6 +239,7 @@ public class HeicImage
      * <p>
      * Height of the default image frame in pixels.
      * </p>
+     * @return The height of the default image frame in pixels.
      */
     public final /*UInt32*/long getHeight()
     {
@@ -240,7 +248,7 @@ public class HeicImage
 
     /**
      * <p>
-     * Fill frames dictionary with read meta data.
+     * Fill frames dictionary with read metadata.
      * </p>
      *
      * @param stream File stream.

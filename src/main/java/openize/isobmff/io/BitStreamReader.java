@@ -75,8 +75,8 @@ public class BitStreamReader
     /**
      * <p>
      * Gets the current position within the bitstream.
-     * <p>The bitstream position is x8 of stream position, adjusted according to the number of bits read from the latest byte.</p>
      * </p>
+     * <p>The bitstream position is x8 of stream position, adjusted according to the number of bits read from the latest byte.</p>
      *
      * @return Unsigned long value.
      */
@@ -303,10 +303,12 @@ public class BitStreamReader
 
     /**
      * <p>
-     * Reads bit at the specified position.
+     * Reads a bit at the specified position.
      * This method does not change the position of the underlying stream, state of the reader remains unchanged.
      * This method is approximately 50% slower than the Read method.
      * </p>
+     * @param position The started position for reading.
+     * @return A read bit.
      */
     public final int getBit(long position)
     {
@@ -345,6 +347,7 @@ public class BitStreamReader
          * <p>
          * Buffer data read from stream.
          * </p>
+         * @return The buffer data read from stream.
          */
         public final byte[] getBuffer()
         {
@@ -355,6 +358,7 @@ public class BitStreamReader
          * <p>
          * Tracks the current byte position in the buffer.
          * </p>
+         * @return the current byte position in the buffer.
          */
         public final int getBufferPosition()
         {
@@ -365,6 +369,7 @@ public class BitStreamReader
          * <p>
          * Tracks the current byte position in the buffer.
          * </p>
+         * @param value a new byte position in the buffer
          */
         public final void setBufferPosition(int value)
         {
@@ -375,6 +380,7 @@ public class BitStreamReader
          * <p>
          * Tracks the current bit position in the buffer.
          * </p>
+         * @return the current bit position in the buffer.
          */
         public final int getBitIndex()
         {
@@ -385,6 +391,7 @@ public class BitStreamReader
          * <p>
          * Tracks the current bit position in the buffer.
          * </p>
+         * @param value a new bit position in the buffer.
          */
         public final void setBitIndex(int value)
         {

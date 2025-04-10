@@ -46,7 +46,7 @@ public class ItemPropertyContainerBox extends Box
         int i = 1;
         while (stream.getBitPosition() < startPos + size * 8)
         {
-            items.put(i, Box.parceBox(stream));
+            items.put(i, Box.parseBox(stream));
             i++;
         }
 

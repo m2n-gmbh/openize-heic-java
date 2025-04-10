@@ -96,8 +96,9 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Type of an image frame content.
+     * Type of image frame content.
      * </p>
+     * @return The type of image frame content.
      */
     public final ImageFrameType getImageType()
     {
@@ -108,6 +109,7 @@ public class HeicImageFrame
      * <p>
      * Width of the image frame in pixels.
      * </p>
+     * @return The width of the image frame in pixels.
      */
     public final /*UInt32*/long getWidth()
     {
@@ -118,6 +120,7 @@ public class HeicImageFrame
      * <p>
      * Height of the image frame in pixels.
      * </p>
+     * @return The height of the image frame in pixels.
      */
     public final /*UInt32*/long getHeight()
     {
@@ -126,7 +129,7 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Indicates the presence of transparency of transparency layer.
+     * Indicates the presence of transparency of layer.
      * </p>
      *
      * @return True if frame is linked with alpha data frame, false otherwise.
@@ -174,8 +177,9 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Indicates the type of derivative content if the frame is derived.
+     * Returns the type of derivative content if the frame is derived.
      * </p>
+     * @return The type of derivative content if the frame is derived.
      */
     public final BoxType getDerivativeType()
     {
@@ -184,8 +188,9 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Indicates the type of auxiliary reference layer if the frame type is auxiliary.
+     * Returns the type of auxiliary reference layer if the frame type is auxiliary.
      * </p>
+     * @return The type of auxiliary reference layer if the frame type is auxiliary.
      */
     public final AuxiliaryReferenceType getAuxiliaryReferenceType()
     {
@@ -196,6 +201,7 @@ public class HeicImageFrame
      * <p>
      * Indicates the type of auxiliary reference layer if the frame type is auxiliary.
      * </p>
+     * @param value the type of auxiliary reference layer if the frame type is auxiliary.
      */
     private void setAuxiliaryReferenceType(AuxiliaryReferenceType value)
     {
@@ -206,6 +212,7 @@ public class HeicImageFrame
      * <p>
      * Number of channels with color data.
      * </p>
+     * @return The number of channels with color data.
      */
     public final byte getNumberOfChannels()
     {
@@ -214,18 +221,9 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Number of channels with color data.
-     * </p>
-     */
-    private void setNumberOfChannels(byte value)
-    {
-        numberOfChannels = value;
-    }
-
-    /**
-     * <p>
      * Bits per channel with color data.
      * </p>
+     * @return The bits per channel with color data.
      */
     public final byte[] getBitsPerChannel()
     {
@@ -234,14 +232,13 @@ public class HeicImageFrame
 
     /**
      * <p>
-     * Bits per channel with color data.
+     * Get pixel data in the format of byte array.
      * </p>
+     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
+     *
+     * @param pixelFormat     Pixel format that defines the order of colors and the presence of alpha byte.
+     * @return Byte array, null if frame does not contain image data.
      */
-    private void setBitsPerChannel(byte[] value)
-    {
-        bitsPerChannel = value;
-    }
-
     public final byte[] getByteArray(PixelFormat pixelFormat)
     {
         return getByteArray(pixelFormat, new Rectangle());
@@ -250,8 +247,8 @@ public class HeicImageFrame
     /**
      * <p>
      * Get pixel data in the format of byte array.
-     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each three or four bytes (the count depends on the pixel format) refer to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors and the presence of alpha byte.
      * @param boundsRectangle Bounds of the requested area.
@@ -292,6 +289,15 @@ public class HeicImageFrame
         return output;
     }
 
+    /**
+     * <p>
+     * Get pixel data in the format of integer array.
+     * </p>
+     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
+     *
+     * @param pixelFormat     Pixel format that defines the order of colors.
+     * @return Integer array, null if frame does not contain image data.
+     */
     public final int[] getInt32Array(PixelFormat pixelFormat)
     {
         return getInt32Array(pixelFormat, new Rectangle());
@@ -300,8 +306,8 @@ public class HeicImageFrame
     /**
      * <p>
      * Get pixel data in the format of integer array.
-     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      * </p>
+     * <p>Each int value refers to one pixel left to right top to bottom line by line.</p>
      *
      * @param pixelFormat     Pixel format that defines the order of colors.
      * @param boundsRectangle Bounds of the requested area.
@@ -341,10 +347,10 @@ public class HeicImageFrame
     /**
      * <p>
      * Get frame text data.
-     * <p>Exists only for mime frame types.</p>
      * </p>
+     * <p>Exists only for mime frame types.</p>
      *
-     * @return String
+     * @return The frame text data.
      */
     public final String getTextData()
     {
@@ -375,11 +381,11 @@ public class HeicImageFrame
     /**
      * <p>
      * Add layer reference to the frame.
-     * Used to link reference layers that are reverce-linked (alpha layer, depth map, hdr).
+     * Used to link reference layers that are reverse-linked (alpha layer, depth map, hdr).
      * </p>
      *
-     * @param id   Layer identificator.
-     * @param type Layer type.
+     * @param id   A layer identifier.
+     * @param type A layer type.
      */
     final void addLayerReference(/*UInt32*/long id, AuxiliaryReferenceType type)
     {
@@ -759,8 +765,8 @@ public class HeicImageFrame
                     break;
                 case pixi:
                     PixelInformationProperty pixi = (PixelInformationProperty) item;
-                    setNumberOfChannels(pixi.num_channels);
-                    setBitsPerChannel(pixi.bits_per_channel);
+                    this.numberOfChannels = pixi.num_channels;
+                    this.bitsPerChannel = pixi.bits_per_channel;
                     break;
                 case rloc:
                     //RelativeLocationProperty rloc = (RelativeLocationProperty) item;

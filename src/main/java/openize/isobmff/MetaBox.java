@@ -49,7 +49,7 @@ public class MetaBox extends FullBox
 
         while (stream.getBitPosition() < startPos + size * 8)
         {
-            Box box = Box.parceBox(stream);
+            Box box = Box.parseBox(stream);
             boxes.put(box.type, box);
         }
 
