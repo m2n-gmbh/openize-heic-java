@@ -10,6 +10,8 @@
 
 package openize.heic.tests;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 import openize.heic.decoder.HeicImage;
 import openize.heic.decoder.HeicImageFrame;
 import openize.heic.decoder.PixelFormat;
@@ -18,8 +20,11 @@ import openize.io.IOMode;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.awt.image.BufferedImage;
 import java.nio.file.Paths;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 
 @Test
@@ -72,6 +77,14 @@ public class HEICTest extends TestsCore
     {
         return new Object[][]{
                 { "iphone_telephoto_with_scaling_list.heic" }
+        };
+    }
+
+    @DataProvider
+    public static Object[][] TestClapData()
+    {
+        return new Object[][]{
+                { "clean_aperture_test.heic" }
         };
     }
 
@@ -177,6 +190,26 @@ public class HEICTest extends TestsCore
             HeicImage image = HeicImage.load(fs);
             byte[] pixels = image.getByteArray(PixelFormat.Argb32);
             compareWithReference(filename, pixels);
+        }
+    }
+
+    /**
+     * <p>
+     * Test decoding of image with CleanApertureBox.
+     * </p>
+     */
+    @Test (dataProvider = "TestClapData")
+    public final void testClap(String filename) throws Exception
+    {
+        try (final IOFileStream fs = new IOFileStream(Paths.get(getSamplesPath(), filename), IOMode.READ))
+        {
+            HeicImage image = HeicImage.load(fs);
+            long width = image.getWidth();
+            long height = image.getHeight();
+
+            BufferedImage reference = ImageIO.read(Paths.get(getReferencePath(), filename + ".png").toFile());
+            assertEquals(width, reference.getWidth());
+            assertEquals(height, reference.getHeight());
         }
     }
 }

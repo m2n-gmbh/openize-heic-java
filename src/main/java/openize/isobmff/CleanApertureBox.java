@@ -98,6 +98,36 @@ public class CleanApertureBox extends Box
         vertOffD = stream.read(32) & 0xFFFFFFFFL;
     }
 
+    public long getWidthRounded()
+    {
+        return round(cleanApertureWidthN, cleanApertureWidthD);
+    }
+
+    public long getHeightRounded()
+    {
+        return round(cleanApertureHeightN, cleanApertureHeightD);
+    }
+
+    public long getLeftRounded(long imageWith)
+    {
+        double offset = (double)horizOffN / (double)horizOffD;
+        double imageCenter = (double)(imageWith-1) / (double)2;
+        double apertureCenter = ((double)(cleanApertureWidthN-1) / (double)cleanApertureWidthD) / 2;
+        return (long)Math.floor(offset + imageCenter - apertureCenter);
+    }
+
+    public long getTopRounded(long imageHeight)
+    {
+        double offset = (double)vertOffN / (double)vertOffD;
+        double imageCenter = (double)(imageHeight-1) / (double)2;
+        double apertureCenter = ((double)(cleanApertureHeightN-1) / (double)cleanApertureHeightD) / 2;
+        return Math.round(offset + imageCenter - apertureCenter);
+    }
+
+    private static long round(long numerator, long denominator)
+    {
+        return (numerator + denominator / 2) / denominator;
+    }
     /**
      * <p>
      * Text summary of the box.

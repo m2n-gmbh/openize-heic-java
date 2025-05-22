@@ -797,7 +797,12 @@ public class HeicImageFrame
                     }
                     break;
                 case clap:
-                    //CleanApertureBox clap = (CleanApertureBox) item;
+                    CleanApertureBox clap = (CleanApertureBox) item;
+                    long left = clap.getLeftRounded(ispeWidth);
+                    long top = clap.getTopRounded(ispeHeight);
+                    // TODO: apply left/top offset (although, it's often zero)
+                    ispeWidth = clap.getWidthRounded();
+                    ispeHeight = clap.getHeightRounded();
                     break;
                 case irot:
                     ImageRotation irot = (ImageRotation) item;
