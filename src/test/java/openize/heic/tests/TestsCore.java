@@ -39,7 +39,7 @@ public class TestsCore
         int index = path.lastIndexOf("target");
         if (index > 0)
         {
-            return path.substring(1, index);
+            return path.substring(0, index);
         }
         return path.substring(1);
     }
